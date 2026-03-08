@@ -49,9 +49,9 @@ MDScreen:
             height: dp(60)
             pos_hint: {"center_x": 0.5}
             
-            MDSpinner:
+            MDProgressBar:
                 size_hint: None, None
-                size: dp(46), dp(46)
+                size: dp(200), dp(6)
                 pos_hint: {"center_x": 0.5, "center_y": 0.5}
-                active: True
+                type: "indeterminate"
                 color: 0.08, 0.72, 0.65, 1
