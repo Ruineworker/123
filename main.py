@@ -481,9 +481,11 @@ class ExpenseTrackerApp(MDApp):
         
         conn.close()
         
-        # Update labels
-        self.root.ids.total_balance_label.text = f"₽ {total_balance:,.2f}"
-        self.root.ids.income_expense_label.text = f"Income: ₽ {total_income:,.0f} | Expenses: ₽ {total_expense:,.0f}"
+        # Update labels - access through the MainScreen instance
+        main_screen = self.root.get_screen("main")
+        if main_screen:
+            main_screen.ids.total_balance_label.text = f"₽ {total_balance:,.2f}"
+            main_screen.ids.income_expense_label.text = f"Income: ₽ {total_income:,.0f} | Expenses: ₽ {total_expense:,.0f}"
     
     def go_to_main(self):
         self.root.current = "main"
