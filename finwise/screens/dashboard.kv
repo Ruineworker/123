@@ -165,17 +165,23 @@ MDScreen:
                     height: dp(80)
                     spacing: dp(12)
                     
-                    MDRaisedButton:
-                        text: "+ Income"
+                    MDButton:
+                        style: "filled"
                         size_hint_x: 0.5
                         md_bg_color: 0.08, 0.72, 0.65, 1
                         on_release: root.add_income()
+
+                        MDButtonText:
+                            text: "+ Income"
                     
-                    MDRaisedButton:
-                        text: "+ Expense"
+                    MDButton:
+                        style: "filled"
                         size_hint_x: 0.5
                         md_bg_color: 0.94, 0.27, 0.27, 1
                         on_release: root.add_expense()
+
+                        MDButtonText:
+                            text: "+ Expense"
                 
                 # Recent Transactions
                 MDLabel:
@@ -185,14 +191,16 @@ MDScreen:
                     size_hint_y: None
                     height: self.texture_size[1] + dp(10)
                 
-                MDRectangleFlatButton:
-                    text: "View All"
+                MDButton:
+                    style: "outlined"
                     size_hint_x: 1
                     pos_hint: {"center_x": 0.5}
                     line_color: 0.08, 0.72, 0.65, 1
-                    text_color: 0.08, 0.72, 0.65, 1
                     radius: [dp(12)]
                     on_release: root.go_to_transactions()
+
+                    MDButtonText:
+                        text: "View All"
                 
                 # Recent Transactions List
                 MDBoxLayout:

@@ -10,10 +10,10 @@ MDScreen:
         # App Bar
         MDTopAppBar:
             title: "Analytics"
-            elevation: 0
+            type: "top"
             specific_text_color: 0.08, 0.72, 0.65, 1
             md_bg_color: 1, 1, 1, 1
-            left_action_items: [["arrow-left", lambda x: root.manager.current = "dashboard"]]
+            left_action_items: [["arrow-left", lambda x: None]]
         
         ScrollView:
             do_scroll_x: False

@@ -10,10 +10,10 @@ MDScreen:
         # App Bar
         MDTopAppBar:
             title: "Settings"
-            elevation: 0
+            type: "top"
             specific_text_color: 0.08, 0.72, 0.65, 1
             md_bg_color: 1, 1, 1, 1
-            left_action_items: [["arrow-left", lambda x: root.manager.current = "dashboard"]]
+            left_action_items: [["arrow-left", lambda x: None]]
         
         ScrollView:
             do_scroll_x: False
@@ -114,23 +114,27 @@ MDScreen:
                         size_hint_y: None
                         height: self.texture_size[1] + dp(10)
                     
-                    MDRectangleFlatButton:
-                        text: "Categories"
+                    MDButton:
+                        style: "outlined"
                         size_hint_x: 1
                         pos_hint: {"center_x": 0.5}
                         line_color: 0.08, 0.72, 0.65, 1
-                        text_color: 0.08, 0.72, 0.65, 1
                         radius: [dp(12)]
                         on_release: root.manager.get_screen("settings").go_to_categories()
+
+                        MDButtonText:
+                            text: "Categories"
                     
-                    MDRectangleFlatButton:
-                        text: "Accounts"
+                    MDButton:
+                        style: "outlined"
                         size_hint_x: 1
                         pos_hint: {"center_x": 0.5}
                         line_color: 0.08, 0.72, 0.65, 1
-                        text_color: 0.08, 0.72, 0.65, 1
                         radius: [dp(12)]
                         on_release: root.manager.get_screen("settings").go_to_accounts()
+
+                        MDButtonText:
+                            text: "Accounts"
                 
                 # Data Management
                 MDCard:
@@ -150,19 +154,25 @@ MDScreen:
                         size_hint_y: None
                         height: self.texture_size[1] + dp(10)
                     
-                    MDRaisedButton:
-                        text: "Backup Database"
+                    MDButton:
+                        style: "filled"
                         size_hint_x: 1
                         pos_hint: {"center_x": 0.5}
                         md_bg_color: 0.08, 0.72, 0.65, 1
                         on_release: root.manager.get_screen("settings").backup_database()
+
+                        MDButtonText:
+                            text: "Backup Database"
                     
-                    MDRaisedButton:
-                        text: "Reset Demo Data"
+                    MDButton:
+                        style: "filled"
                         size_hint_x: 1
                         pos_hint: {"center_x": 0.5}
                         md_bg_color: 0.94, 0.27, 0.27, 1
                         on_release: root.manager.get_screen("settings").reset_demo_data()
+
+                        MDButtonText:
+                            text: "Reset Demo Data"
                 
                 # App Info
                 MDCard:

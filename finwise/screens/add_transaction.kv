@@ -10,10 +10,10 @@ MDScreen:
         # App Bar
         MDTopAppBar:
             title: "Add Transaction"
-            elevation: 0
+            type: "top"
             specific_text_color: 0.08, 0.72, 0.65, 1
             md_bg_color: 1, 1, 1, 1
-            left_action_items: [["arrow-left", lambda x: root.manager.current = "dashboard"]]
+            left_action_items: [["arrow-left", lambda x: None]]
         
         ScrollView:
             do_scroll_x: False
@@ -38,17 +38,23 @@ MDScreen:
                     height: dp(50)
                     spacing: dp(12)
                     
-                    MDRaisedButton:
-                        text: "Expense"
+                    MDButton:
+                        style: "filled"
                         size_hint_x: 0.5
                         md_bg_color: 0.94, 0.27, 0.27, 1 if root.manager.get_screen("add_transaction").transaction_type == "expense" else 0.8, 0.8, 0.8, 1
                         on_release: root.manager.get_screen("add_transaction").set_transaction_type("expense")
+
+                        MDButtonText:
+                            text: "Expense"
                     
-                    MDRaisedButton:
-                        text: "Income"
+                    MDButton:
+                        style: "filled"
                         size_hint_x: 0.5
                         md_bg_color: 0.08, 0.72, 0.65, 1 if root.manager.get_screen("add_transaction").transaction_type == "income" else 0.8, 0.8, 0.8, 1
                         on_release: root.manager.get_screen("add_transaction").set_transaction_type("income")
+
+                        MDButtonText:
+                            text: "Income"
                 
                 # Amount Input
                 MDLabel:
@@ -135,21 +141,26 @@ MDScreen:
                     height: dp(100)
                 
                 # Save Button
-                MDRaisedButton:
-                    text: "Save Transaction"
+                MDButton:
+                    style: "filled"
                     size_hint_x: 1
                     pos_hint: {"center_x": 0.5}
                     md_bg_color: 0.08, 0.72, 0.65, 1
-                    font_size: dp(16)
                     on_release: root.manager.get_screen("add_transaction").save_transaction()
+
+                    MDButtonText:
+                        text: "Save Transaction"
                 
                 # Clear Button
-                MDTextButton:
-                    text: "Clear Form"
+                MDButton:
+                    style: "text"
                     size_hint_x: 1
                     pos_hint: {"center_x": 0.5}
                     theme_text_color: "Hint"
                     on_release: root.manager.get_screen("add_transaction").clear_form()
+
+                    MDButtonText:
+                        text: "Clear Form"
                 
                 # Bottom padding for navigation
                 MDBoxLayout:
