@@ -1,1 +1,37 @@
-Nothing should be ignored based on the provided file changes. The only modified file is 'finwise/screens/splash.kv', which appears to be a source code file for a Kivy application interface and should not be ignored. No build artifacts, dependencies, or temporary files are present in the changes.
+```
+# Kivy specific
+*.pyc
+__pycache__/
+
+# Dependencies
+.venv/
+venv/
+env/
+pip-log.txt
+pip-selfcheck.json
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+*.lo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+```

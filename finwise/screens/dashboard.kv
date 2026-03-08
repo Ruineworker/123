@@ -37,7 +37,7 @@ MDScreen:
                     
                     MDLabel:
                         text: "Total Balance"
-                        font_style: "Subtitle"
+                        font_size: "16sp"
                         theme_text_color: "Custom"
                         text_color: 1, 1, 1, 0.9
                         size_hint_y: None
@@ -45,7 +45,7 @@ MDScreen:
                     
                     MDLabel:
                         text: root.total_balance
-                        font_style: "Headline"
+                        font_size: "24sp"
                         theme_text_color: "Custom"
                         text_color: 1, 1, 1, 1
                         bold: True
@@ -61,7 +61,7 @@ MDScreen:
                         
                         MDLabel:
                             text: "Updated today"
-                            font_style: "Caption"
+                            font_size: "12sp"
                             theme_text_color: "Custom"
                             text_color: 1, 1, 1, 0.7
                             size_hint_y: None
@@ -97,14 +97,14 @@ MDScreen:
                             
                             MDLabel:
                                 text: "Income"
-                                font_style: "Subtitle"
+                                font_size: "16sp"
                                 theme_text_color: "Secondary"
                                 size_hint_y: None
                                 height: self.texture_size[1]
                         
                         MDLabel:
                             text: root.monthly_income
-                            font_style: "Title"
+                            font_size: "20sp"
                             theme_text_color: "Primary"
                             bold: True
                             shorten: True
@@ -136,14 +136,14 @@ MDScreen:
                             
                             MDLabel:
                                 text: "Expenses"
-                                font_style: "Subtitle"
+                                font_size: "16sp"
                                 theme_text_color: "Secondary"
                                 size_hint_y: None
                                 height: self.texture_size[1]
                         
                         MDLabel:
                             text: root.monthly_expenses
-                            font_style: "Title"
+                            font_size: "20sp"
                             theme_text_color: "Custom"
                             text_color: 0.94, 0.27, 0.27, 1
                             bold: True
@@ -155,7 +155,7 @@ MDScreen:
                 # Quick Actions
                 MDLabel:
                     text: "Quick Actions"
-                    font_style: "Title"
+                    font_size: "20sp"
                     theme_text_color: "Primary"
                     size_hint_y: None
                     height: self.texture_size[1] + dp(10)
@@ -180,7 +180,7 @@ MDScreen:
                 # Recent Transactions
                 MDLabel:
                     text: "Recent Transactions"
-                    font_style: "Title"
+                    font_size: "20sp"
                     theme_text_color: "Primary"
                     size_hint_y: None
                     height: self.texture_size[1] + dp(10)
