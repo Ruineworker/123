@@ -177,7 +177,7 @@ On first launch, the app includes:
 ## 📝 Requirements
 
 See `requirements.txt` for full list:
-- kivymd>=2.0.0
+- kivymd==1.2.0
 - kivy>=2.3.0
 - sqlite3 (built-in)
 

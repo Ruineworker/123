@@ -288,8 +288,7 @@ class AnalyticsScreen(MDScreen):
     
     def create_category_item(self, name, icon, color, amount, percentage, is_income=False):
         """Create a category list item with progress bar"""
-        from kivymd.uix.list import OneLineListItem
-        from kivymd.uix.icon import IconLeftWidget
+        from kivymd.uix.list import OneLineListItem, IconLeftWidget
         from kivymd.uix.progressindicator import MDLinearProgressIndicator
         
         # Convert hex color to RGB

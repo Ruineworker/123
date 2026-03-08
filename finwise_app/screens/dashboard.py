@@ -326,8 +326,7 @@ class DashboardScreen(MDScreen):
     
     def create_transaction_item(self, transaction):
         """Create a transaction list item"""
-        from kivymd.uix.list import OneLineAvatarIconLeftWidget, IconLeftWidget
-        from kivymd.uix.list import OneLineListItem
+        from kivymd.uix.list import OneLineAvatarIconListItem, IconLeftWidget
         
         # Transaction data: id, type, amount, category_id, account_id, note, date, category_name, category_icon, category_color, account_name
         trans_id = transaction[0]
@@ -347,7 +346,7 @@ class DashboardScreen(MDScreen):
             formatted_date = date_str[:10]
         
         # Create item
-        item = OneLineListItem(
+        item = OneLineAvatarIconListItem(
             text=note[:40] + "..." if len(note) > 40 else note,
             secondary_text=f"{category_name} • {formatted_date}",
             height=dp(60),

@@ -6,7 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, SlideTransition, FadeTransitio
 from kivy.metrics import dp
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.list import OneLineAvatarIconLeftWidget, IconLeftWidget
+from kivymd.uix.list import OneLineAvatarIconListItem, IconLeftWidget
 from kivymd.uix.card import MDCard
 from kivymd.uix.button import MDButton, MDButtonText
 from kivymd.uix.dialog import MDDialog
