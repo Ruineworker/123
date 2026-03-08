@@ -1,0 +1,157 @@
+#:import app kivy.app.App
+
+MDScreen:
+    name: "add_transaction"
+    md_bg_color: 0.94, 0.99, 0.98, 1
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        
+        # App Bar
+        MDTopAppBar:
+            title: "Add Transaction"
+            elevation: 0
+            specific_text_color: 0.08, 0.72, 0.65, 1
+            md_bg_color: 1, 1, 1, 1
+            left_action_items: [["arrow-left", lambda x: app.root.current = "dashboard"]]
+        
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(20)
+                spacing: dp(16)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                # Transaction Type Toggle
+                MDLabel:
+                    text: "Transaction Type"
+                    font_style: "Subtitle"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDBoxLayout:
+                    size_hint_y: None
+                    height: dp(50)
+                    spacing: dp(12)
+                    
+                    MDFillRoundFlatButton:
+                        text: "Expense"
+                        size_hint_x: 0.5
+                        md_bg_color: 0.94, 0.27, 0.27, 1 if app.root.get_screen("add_transaction").transaction_type == "expense" else 0.8, 0.8, 0.8, 1
+                        on_release: app.root.get_screen("add_transaction").set_transaction_type("expense")
+                    
+                    MDFillRoundFlatButton:
+                        text: "Income"
+                        size_hint_x: 0.5
+                        md_bg_color: 0.08, 0.72, 0.65, 1 if app.root.get_screen("add_transaction").transaction_type == "income" else 0.8, 0.8, 0.8, 1
+                        on_release: app.root.get_screen("add_transaction").set_transaction_type("income")
+                
+                # Amount Input
+                MDLabel:
+                    text: "Amount"
+                    font_style: "Subtitle"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDTextField:
+                    id: amount_input
+                    hint_text: "0.00"
+                    mode: "rectangle"
+                    input_filter: "float"
+                    icon_left: "currency-usd"
+                    multiline: False
+                
+                # Account Selection
+                MDLabel:
+                    text: "Account"
+                    font_style: "Subtitle"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDDropDownItem:
+                    id: account_spinner
+                    text: "Select Account"
+                    size_hint_x: 1
+                    on_release: app.root.get_screen("add_transaction").on_account_spinner(*args)
+                    
+                    MenuItem:
+                        text: "Account 1"
+                    
+                    MenuItem:
+                        text: "Account 2"
+                
+                # Category Selection
+                MDLabel:
+                    text: "Category"
+                    font_style: "Subtitle"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDGridLayout:
+                    id: categories_container
+                    cols: 3
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: dp(10)
+                
+                # Date Input
+                MDLabel:
+                    text: "Date"
+                    font_style: "Subtitle"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDTextField:
+                    id: date_input
+                    hint_text: "YYYY-MM-DD"
+                    mode: "rectangle"
+                    icon_left: "calendar"
+                    text: datetime.now().strftime("%Y-%m-%d")
+                    multiline: False
+                
+                # Note Input
+                MDLabel:
+                    text: "Note (Optional)"
+                    font_style: "Subtitle"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDTextField:
+                    id: note_input
+                    hint_text: "Add a note..."
+                    mode: "rectangle"
+                    icon_left: "note"
+                    multiline: True
+                    size_hint_y: None
+                    height: dp(100)
+                
+                # Save Button
+                MDFillRoundFlatButton:
+                    text: "Save Transaction"
+                    size_hint_x: 1
+                    pos_hint: {"center_x": 0.5}
+                    md_bg_color: 0.08, 0.72, 0.65, 1
+                    font_size: dp(16)
+                    on_release: app.root.get_screen("add_transaction").save_transaction()
+                
+                # Clear Button
+                MDTextButton:
+                    text: "Clear Form"
+                    size_hint_x: 1
+                    pos_hint: {"center_x": 0.5}
+                    theme_text_color: "Hint"
+                    on_release: app.root.get_screen("add_transaction").clear_form()
+                
+                # Bottom padding for navigation
+                MDBoxLayout:
+                    size_hint_y: None
+                    height: dp(80)

@@ -1,0 +1,56 @@
+#:import app kivy.app.App
+
+MDScreen:
+    name: "accounts"
+    md_bg_color: 0.94, 0.99, 0.98, 1
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        
+        # App Bar
+        MDTopAppBar:
+            title: "Accounts"
+            elevation: 0
+            specific_text_color: 0.08, 0.72, 0.65, 1
+            md_bg_color: 1, 1, 1, 1
+            left_action_items: [["arrow-left", lambda x: app.root.current = "dashboard"]]
+            right_action_items: [["plus", lambda x: app.root.get_screen("accounts").show_add_dialog(), "Add Account"]]
+        
+        # Total Balance Card
+        MDCard:
+            size_hint_y: None
+            height: dp(100)
+            padding: dp(20)
+            radius: [dp(0), dp(0), dp(20), dp(20)]
+            elevation: 2
+            style: "filled"
+            md_bg_color: 0.08, 0.72, 0.65, 1
+            
+            MDLabel:
+                id: total_balance_label
+                text: "Total: $0.00"
+                font_style: "Headline"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                bold: True
+                halign: "center"
+                valign: "middle"
+        
+        # Accounts List
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                id: accounts_container
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(16)
+                spacing: dp(12)
+                
+                MDLabel:
+                    text: "No accounts found"
+                    halign: "center"
+                    theme_text_color: "Hint"
+                    size_hint_y: None
+                    height: dp(100)

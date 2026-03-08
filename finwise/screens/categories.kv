@@ -1,0 +1,55 @@
+#:import app kivy.app.App
+
+MDScreen:
+    name: "categories"
+    md_bg_color: 0.94, 0.99, 0.98, 1
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        
+        # App Bar
+        MDTopAppBar:
+            title: "Categories"
+            elevation: 0
+            specific_text_color: 0.08, 0.72, 0.65, 1
+            md_bg_color: 1, 1, 1, 1
+            left_action_items: [["arrow-left", lambda x: app.root.current = "dashboard"]]
+            right_action_items: [["plus", lambda x: app.root.get_screen("categories").show_add_dialog(), "Add Category"]]
+        
+        # Type Toggle
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(16, 8)
+            spacing: dp(8)
+            
+            MDFillRoundFlatButton:
+                text: "Expenses"
+                size_hint_x: 0.5
+                md_bg_color: 0.08, 0.72, 0.65, 1 if app.root.get_screen("categories").category_type == "expense" else 0.8, 0.8, 0.8, 1
+                on_release: app.root.get_screen("categories").set_type("expense")
+            
+            MDFillRoundFlatButton:
+                text: "Income"
+                size_hint_x: 0.5
+                md_bg_color: 0.08, 0.72, 0.65, 1 if app.root.get_screen("categories").category_type == "income" else 0.8, 0.8, 0.8, 1
+                on_release: app.root.get_screen("categories").set_type("income")
+        
+        # Categories List
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                id: categories_container
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(16)
+                spacing: dp(8)
+                
+                MDLabel:
+                    text: "No categories found"
+                    halign: "center"
+                    theme_text_color: "Hint"
+                    size_hint_y: None
+                    height: dp(100)

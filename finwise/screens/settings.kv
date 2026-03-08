@@ -1,0 +1,238 @@
+#:import app kivy.app.App
+
+MDScreen:
+    name: "settings"
+    md_bg_color: 0.94, 0.99, 0.98, 1
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        
+        # App Bar
+        MDTopAppBar:
+            title: "Settings"
+            elevation: 0
+            specific_text_color: 0.08, 0.72, 0.65, 1
+            md_bg_color: 1, 1, 1, 1
+            left_action_items: [["arrow-left", lambda x: app.root.current = "dashboard"]]
+        
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(16)
+                spacing: dp(16)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                # Currency Setting
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDLabel:
+                        text: "Currency"
+                        font_style: "Subtitle"
+                        theme_text_color: "Primary"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    MDDropDownItem:
+                        id: currency_spinner
+                        text: "$"
+                        size_hint_x: 1
+                        on_release: 
+                            app.root.get_screen("settings").set_currency(self.text)
+                        
+                        MenuItem:
+                            text: "$"
+                        
+                        MenuItem:
+                            text: "€"
+                        
+                        MenuItem:
+                            text: "£"
+                        
+                        MenuItem:
+                            text: "¥"
+                        
+                        MenuItem:
+                            text: "₽"
+                
+                # Theme Setting
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDLabel:
+                        text: "Theme"
+                        font_style: "Subtitle"
+                        theme_text_color: "Primary"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    MDDropDownItem:
+                        id: theme_spinner
+                        text: "Light"
+                        size_hint_x: 1
+                        on_release: 
+                            app.root.get_screen("settings").set_theme(self.text)
+                        
+                        MenuItem:
+                            text: "Light"
+                        
+                        MenuItem:
+                            text: "Dark"
+                
+                # Manage Categories
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDLabel:
+                        text: "Manage"
+                        font_style: "Subtitle"
+                        theme_text_color: "Primary"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    MDRectangleFlatButton:
+                        text: "Categories"
+                        size_hint_x: 1
+                        pos_hint: {"center_x": 0.5}
+                        line_color: 0.08, 0.72, 0.65, 1
+                        text_color: 0.08, 0.72, 0.65, 1
+                        radius: [dp(12)]
+                        on_release: app.root.get_screen("settings").go_to_categories()
+                    
+                    MDRectangleFlatButton:
+                        text: "Accounts"
+                        size_hint_x: 1
+                        pos_hint: {"center_x": 0.5}
+                        line_color: 0.08, 0.72, 0.65, 1
+                        text_color: 0.08, 0.72, 0.65, 1
+                        radius: [dp(12)]
+                        on_release: app.root.get_screen("settings").go_to_accounts()
+                
+                # Data Management
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDLabel:
+                        text: "Data Management"
+                        font_style: "Subtitle"
+                        theme_text_color: "Primary"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    MDFillRoundFlatButton:
+                        text: "Backup Database"
+                        size_hint_x: 1
+                        pos_hint: {"center_x": 0.5}
+                        md_bg_color: 0.08, 0.72, 0.65, 1
+                        on_release: app.root.get_screen("settings").backup_database()
+                    
+                    MDFillRoundFlatButton:
+                        text: "Reset Demo Data"
+                        size_hint_x: 1
+                        pos_hint: {"center_x": 0.5}
+                        md_bg_color: 0.94, 0.27, 0.27, 1
+                        on_release: app.root.get_screen("settings").reset_demo_data()
+                
+                # App Info
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDLabel:
+                        text: "About"
+                        font_style: "Subtitle"
+                        theme_text_color: "Primary"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    MDLabel:
+                        text: "FinWise v1.0.0"
+                        font_style: "Body"
+                        theme_text_color: "Secondary"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    
+                    MDLabel:
+                        text: "Personal Finance Tracker"
+                        font_style: "Caption"
+                        theme_text_color: "Hint"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                
+                # Bottom padding for navigation
+                MDBoxLayout:
+                    size_hint_y: None
+                    height: dp(80)
+        
+        # Bottom Navigation
+        MDBottomNavigation:
+            panel_color: 1, 1, 1, 1
+            elevation: 8
+            
+            MDBottomNavigationItem:
+                name: "nav_dashboard"
+                text: "Home"
+                icon: "home-outline"
+                on_tab_press: app.root.current = "dashboard"
+            
+            MDBottomNavigationItem:
+                name: "nav_transactions"
+                text: "Transactions"
+                icon: "swap-horizontal"
+                on_tab_press: app.root.current = "transactions"
+            
+            MDBottomNavigationItem:
+                name: "nav_analytics"
+                text: "Analytics"
+                icon: "chart-pie"
+                on_tab_press: app.root.current = "analytics"
+            
+            MDBottomNavigationItem:
+                name: "nav_accounts"
+                text: "Accounts"
+                icon: "wallet"
+                on_tab_press: app.root.current = "accounts"
+            
+            MDBottomNavigationItem:
+                name: "nav_settings"
+                text: "Settings"
+                icon: "cog-outline"
+                active: True
+                on_tab_press: app.root.current = "settings"
