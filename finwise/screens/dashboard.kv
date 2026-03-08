@@ -7,10 +7,10 @@ MDScreen:
     MDBoxLayout:
         orientation: "vertical"
         
-        # App Bar
+        # App Bar - Updated for KivyMD 2.0
         MDTopAppBar:
             title: "FinWise"
-            elevation: 0
+            type: "top"
             specific_text_color: 0.08, 0.72, 0.65, 1
             md_bg_color: 1, 1, 1, 1
             left_action_items: [["account-circle-outline", lambda x: None, "Profile"]]
@@ -34,7 +34,6 @@ MDScreen:
                     padding: dp(24)
                     spacing: dp(12)
                     radius: [dp(24), dp(24), dp(24), dp(24)]
-                    elevation: 2
                     style: "filled"
                     md_bg_color: 0.08, 0.72, 0.65, 1  # Primary teal
                     
@@ -47,7 +46,7 @@ MDScreen:
                         height: self.texture_size[1]
                     
                     MDLabel:
-                        text: app.root.get_screen("dashboard").total_balance if app.root else "$0.00"
+                        text: root.total_balance
                         font_style: "Headline"
                         theme_text_color: "Custom"
                         text_color: 1, 1, 1, 1
@@ -83,7 +82,6 @@ MDScreen:
                         padding: dp(16)
                         spacing: dp(8)
                         radius: [dp(20), dp(20), dp(20), dp(20)]
-                        elevation: 1
                         style: "filled"
                         md_bg_color: 1, 1, 1, 1
                         
@@ -107,7 +105,7 @@ MDScreen:
                                 height: self.texture_size[1]
                         
                         MDLabel:
-                            text: app.root.get_screen("dashboard").monthly_income if app.root else "$0.00"
+                            text: root.monthly_income
                             font_style: "Title"
                             theme_text_color: "Primary"
                             bold: True
@@ -123,7 +121,6 @@ MDScreen:
                         padding: dp(16)
                         spacing: dp(8)
                         radius: [dp(20), dp(20), dp(20), dp(20)]
-                        elevation: 1
                         style: "filled"
                         md_bg_color: 1, 1, 1, 1
                         
@@ -147,7 +144,7 @@ MDScreen:
                                 height: self.texture_size[1]
                         
                         MDLabel:
-                            text: app.root.get_screen("dashboard").monthly_expenses if app.root else "$0.00"
+                            text: root.monthly_expenses
                             font_style: "Title"
                             theme_text_color: "Custom"
                             text_color: 0.94, 0.27, 0.27, 1
@@ -174,13 +171,13 @@ MDScreen:
                         text: "+ Income"
                         size_hint_x: 0.5
                         md_bg_color: 0.08, 0.72, 0.65, 1
-                        on_release: app.root.get_screen("dashboard").add_income()
+                        on_release: root.add_income()
                     
                     MDFillRoundFlatButton:
                         text: "+ Expense"
                         size_hint_x: 0.5
                         md_bg_color: 0.94, 0.27, 0.27, 1
-                        on_release: app.root.get_screen("dashboard").add_expense()
+                        on_release: root.add_expense()
                 
                 # Recent Transactions
                 MDLabel:
@@ -197,7 +194,7 @@ MDScreen:
                     line_color: 0.08, 0.72, 0.65, 1
                     text_color: 0.08, 0.72, 0.65, 1
                     radius: [dp(12)]
-                    on_release: app.root.get_screen("dashboard").go_to_transactions()
+                    on_release: root.go_to_transactions()
                 
                 # Recent Transactions List
                 MDBoxLayout:
@@ -208,10 +205,9 @@ MDScreen:
                     spacing: dp(8)
                     padding: dp(0, dp(0), dp(0), dp(80))
         
-        # Bottom Navigation
+        # Bottom Navigation - Updated for KivyMD 2.0
         MDBottomNavigation:
             panel_color: 1, 1, 1, 1
-            elevation: 8
             
             MDBottomNavigationItem:
                 name: "nav_dashboard"

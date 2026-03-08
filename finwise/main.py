@@ -1,6 +1,7 @@
 """
 FinWise - Personal Finance Tracker
 Main Application Entry Point
+Updated for KivyMD 2.0.0 and Kivy 2.3.1
 """
 
 from kivy.lang import Builder
@@ -10,14 +11,6 @@ from kivy.utils import platform
 from kivy.metrics import dp
 from libs.database import Database
 from libs.models import init_db
-from screens.splash import SplashScreen
-from screens.dashboard import DashboardScreen
-from screens.transactions import TransactionsScreen
-from screens.add_transaction import AddTransactionScreen
-from screens.categories import CategoriesScreen
-from screens.accounts import AccountsScreen
-from screens.analytics import AnalyticsScreen
-from screens.settings import SettingsScreen
 
 # Set window size for desktop testing
 if platform not in ('android', 'ios'):
@@ -32,24 +25,29 @@ class FinWiseApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.title = "FinWise"
+        
+        # Configure theme for Material Design 3
         self.theme_cls.primary_palette = "Teal"
         self.theme_cls.primary_hue = "500"
-        self.theme_cls.accent_palette = "Teal"
-        self.theme_cls.accent_hue = "700"
         self.theme_cls.theme_style = "Light"
         self.theme_cls.material_style = "M3"
         
         # Custom colors matching the design
         self.theme_cls.colors = {
             "primary": "#14B8A6",  # Bright teal-green
+            "on-primary": "#FFFFFF",
+            "primary-container": "#CCFBF1",
+            "on-primary-container": "#0F766E",
             "secondary": "#2DD4BF",  # Soft cyan
+            "on-secondary": "#FFFFFF",
+            "secondary-container": "#F0FDFA",
+            "on-secondary-container": "#115E59",
             "background": "#F0FDFA",  # Very light mint
+            "on-background": "#1F2937",
             "surface": "#FFFFFF",  # White cards
+            "on-surface": "#1F2937",
             "error": "#EF4444",
-            "on_primary": "#FFFFFF",
-            "on_secondary": "#FFFFFF",
-            "on_background": "#1F2937",
-            "on_surface": "#1F2937",
+            "on-error": "#FFFFFF",
         }
         
         self.db = None
@@ -57,7 +55,7 @@ class FinWiseApp(MDApp):
 
     def build(self):
         """Build the application"""
-        self.icon = "assets/icon.png"
+        self.icon = "assets/icon.png" if hasattr(self, 'icon') else ""
         
         # Load all KV files
         Builder.load_file("screens/splash.kv")
@@ -77,7 +75,7 @@ class FinWiseApp(MDApp):
         return Builder.load_string("""
 #:import FadeTransition kivy.uix.screenmanager.FadeTransition
 
-MDScreenManager:
+ScreenManager:
     transition: FadeTransition()
     duration: 0.3
     

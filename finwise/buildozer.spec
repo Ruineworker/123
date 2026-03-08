@@ -19,7 +19,7 @@ source.include_exts = py,png,jpg,kv,atlas,json
 version = 1.0.0
 
 # (list) Application requirements
-requirements = python3,kivy==2.3.0,kivymd==1.2.0,pillow,sqlite3
+requirements = python3,kivy==2.3.1,kivymd>=2.0.0.dev0,pillow,sqlite3
 
 # (str) Presplash of the application
 #presplash.filename = %(source.dir)s/assets/presplash.png
@@ -37,13 +37,13 @@ fullscreen = 0
 android.permissions = WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
 
 # (int) Target Android API, should be as high as possible
-android.api = 33
+android.api = 34
 
 # (int) Minimum API your APK will support
 android.minapi = 24
 
 # (str) Android NDK version to use
-android.ndk = 25b
+android.ndk = 27
 
 # (bool) If True, then skip trying to update the Android sdk
 android.skip_update = False
