@@ -518,7 +518,11 @@ class ExpenseTrackerApp(MDApp):
         accounts = cursor.fetchall()
         conn.close()
         
-        self.root.ids.accounts_list.clear_widgets()
+        accounts_screen = self.root.get_screen("accounts")
+        if not accounts_screen:
+            return
+            
+        accounts_screen.ids.accounts_list.clear_widgets()
         
         for account in accounts:
             item = OneLineAvatarIconListItem(
@@ -527,7 +531,7 @@ class ExpenseTrackerApp(MDApp):
             )
             icon = IconLeftWidget(icon="wallet-outline")
             item.add_widget(icon)
-            self.root.ids.accounts_list.add_widget(item)
+            accounts_screen.ids.accounts_list.add_widget(item)
     
     def show_add_account_dialog(self):
         if not self.dialog:
@@ -654,23 +658,30 @@ class ExpenseTrackerApp(MDApp):
         categories = cursor.fetchall()
         self.category_emojis = {cat[0]: cat[1] for cat in categories}
         
-        # Update button colors
-        if self.current_transaction_type == "income":
-            self.root.ids.type_income_btn.md_bg_color = (0, 0.8, 0, 1)
-            self.root.ids.type_expense_btn.md_bg_color = (0.2, 0.2, 0.2, 1)
-        else:
-            self.root.ids.type_income_btn.md_bg_color = (0.2, 0.2, 0.2, 1)
-            self.root.ids.type_expense_btn.md_bg_color = (1, 0, 0, 1)
+        # Get the add transaction screen to update button colors
+        trans_screen = self.root.get_screen("add_transaction")
+        if trans_screen:
+            # Update button colors
+            if self.current_transaction_type == "income":
+                trans_screen.ids.type_income_btn.md_bg_color = (0, 0.8, 0, 1)
+                trans_screen.ids.type_expense_btn.md_bg_color = (0.2, 0.2, 0.2, 1)
+            else:
+                trans_screen.ids.type_income_btn.md_bg_color = (0.2, 0.2, 0.2, 1)
+                trans_screen.ids.type_expense_btn.md_bg_color = (1, 0, 0, 1)
     
     def set_transaction_type(self, transaction_type):
         self.current_transaction_type = transaction_type
         self.setup_add_transaction_screen()
     
     def save_transaction(self):
-        account_name = self.root.ids.account_dropdown.text
-        category = self.root.ids.category_dropdown.text
-        amount_text = self.root.ids.amount_field.text
-        description = self.root.ids.description_field.text
+        trans_screen = self.root.get_screen("add_transaction")
+        if not trans_screen:
+            return
+            
+        account_name = trans_screen.ids.account_dropdown.text
+        category = trans_screen.ids.category_dropdown.text
+        amount_text = trans_screen.ids.amount_field.text
+        description = trans_screen.ids.description_field.text
         
         if not account_name or account_name == "Select Account":
             Snackbar(text="Please select an account").open()
@@ -709,8 +720,8 @@ class ExpenseTrackerApp(MDApp):
         conn.close()
         
         # Clear fields
-        self.root.ids.amount_field.text = ""
-        self.root.ids.description_field.text = ""
+        trans_screen.ids.amount_field.text = ""
+        trans_screen.ids.description_field.text = ""
         
         Snackbar(text="Transaction saved successfully").open()
         self.go_to_main()
@@ -728,7 +739,11 @@ class ExpenseTrackerApp(MDApp):
         transactions = cursor.fetchall()
         conn.close()
         
-        self.root.ids.history_list.clear_widgets()
+        history_screen = self.root.get_screen("history")
+        if not history_screen:
+            return
+            
+        history_screen.ids.history_list.clear_widgets()
         self.all_transactions = transactions
         
         for trans in transactions:
@@ -742,12 +757,16 @@ class ExpenseTrackerApp(MDApp):
             
             icon = IconLeftWidget(icon="cash-check" if trans[1] == "income" else "cash-remove")
             item.add_widget(icon)
-            self.root.ids.history_list.add_widget(item)
+            history_screen.ids.history_list.add_widget(item)
     
     def search_history(self):
-        search_text = self.root.ids.search_field.text.lower()
+        history_screen = self.root.get_screen("history")
+        if not history_screen:
+            return
+            
+        search_text = history_screen.ids.search_field.text.lower()
         
-        self.root.ids.history_list.clear_widgets()
+        history_screen.ids.history_list.clear_widgets()
         
         for trans in self.all_transactions:
             if (search_text in trans[2].lower() or 
@@ -764,7 +783,7 @@ class ExpenseTrackerApp(MDApp):
                 
                 icon = IconLeftWidget(icon="cash-check" if trans[1] == "income" else "cash-remove")
                 item.add_widget(icon)
-                self.root.ids.history_list.add_widget(item)
+                history_screen.ids.history_list.add_widget(item)
     
     def manage_categories(self, category_type):
         Snackbar(text=f"Manage {category_type} categories - Feature coming soon").open()
