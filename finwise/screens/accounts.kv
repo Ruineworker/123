@@ -1,4 +1,4 @@
-#:import app kivy.app.App
+
 
 MDScreen:
     name: "accounts"
@@ -13,8 +13,8 @@ MDScreen:
             elevation: 0
             specific_text_color: 0.08, 0.72, 0.65, 1
             md_bg_color: 1, 1, 1, 1
-            left_action_items: [["arrow-left", lambda x: app.root.current = "dashboard"]]
-            right_action_items: [["plus", lambda x: app.root.get_screen("accounts").show_add_dialog(), "Add Account"]]
+            left_action_items: [["arrow-left", lambda x: root.manager.current = "dashboard"]]
+            right_action_items: [["plus", lambda x: root.manager.get_screen("accounts").show_add_dialog(), "Add Account"]]
         
         # Total Balance Card
         MDCard:

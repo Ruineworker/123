@@ -1,4 +1,4 @@
-#:import app kivy.app.App
+
 
 MDScreen:
     name: "analytics"
@@ -13,7 +13,7 @@ MDScreen:
             elevation: 0
             specific_text_color: 0.08, 0.72, 0.65, 1
             md_bg_color: 1, 1, 1, 1
-            left_action_items: [["arrow-left", lambda x: app.root.current = "dashboard"]]
+            left_action_items: [["arrow-left", lambda x: root.manager.current = "dashboard"]]
         
         ScrollView:
             do_scroll_x: False
@@ -213,29 +213,29 @@ MDScreen:
                 name: "nav_dashboard"
                 text: "Home"
                 icon: "home-outline"
-                on_tab_press: app.root.current = "dashboard"
+                on_tab_press: root.manager.current = "dashboard"
             
             MDBottomNavigationItem:
                 name: "nav_transactions"
                 text: "Transactions"
                 icon: "swap-horizontal"
-                on_tab_press: app.root.current = "transactions"
+                on_tab_press: root.manager.current = "transactions"
             
             MDBottomNavigationItem:
                 name: "nav_analytics"
                 text: "Analytics"
                 icon: "chart-pie"
                 active: True
-                on_tab_press: app.root.current = "analytics"
+                on_tab_press: root.manager.current = "analytics"
             
             MDBottomNavigationItem:
                 name: "nav_accounts"
                 text: "Accounts"
                 icon: "wallet"
-                on_tab_press: app.root.current = "accounts"
+                on_tab_press: root.manager.current = "accounts"
             
             MDBottomNavigationItem:
                 name: "nav_settings"
                 text: "Settings"
                 icon: "cog-outline"
-                on_tab_press: app.root.current = "settings"
+                on_tab_press: root.manager.current = "settings"

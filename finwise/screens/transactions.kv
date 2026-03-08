@@ -1,4 +1,4 @@
-#:import app kivy.app.App
+
 
 MDScreen:
     name: "transactions"
@@ -13,7 +13,7 @@ MDScreen:
             elevation: 0
             specific_text_color: 0.08, 0.72, 0.65, 1
             md_bg_color: 1, 1, 1, 1
-            left_action_items: [["arrow-left", lambda x: app.root.current = "dashboard"]]
+            left_action_items: [["arrow-left", lambda x: root.manager.current = "dashboard"]]
             
             MDTextField:
                 id: search_field
@@ -22,7 +22,7 @@ MDScreen:
                 size_hint_x: 0.6
                 pos_hint: {"center_x": 0.5}
                 icon_left: "magnify"
-                on_text: app.root.get_screen("transactions").on_search_text(*args)
+                on_text: root.manager.get_screen("transactions").on_search_text(*args)
         
         # Filter Chips
         MDBoxLayout:
@@ -35,25 +35,25 @@ MDScreen:
                 text: "All"
                 size_hint_x: None
                 width: dp(70)
-                md_bg_color: 0.08, 0.72, 0.65, 1 if app.root.get_screen("transactions").filter_type == "all" else 0.8, 0.8, 0.8, 1
+                md_bg_color: 0.08, 0.72, 0.65, 1 if root.manager.get_screen("transactions").filter_type == "all" else 0.8, 0.8, 0.8, 1
                 on_release: 
-                    app.root.get_screen("transactions").set_filter("all")
+                    root.manager.get_screen("transactions").set_filter("all")
             
             MDFillRoundFlatButton:
                 text: "Income"
                 size_hint_x: None
                 width: dp(80)
-                md_bg_color: 0.08, 0.72, 0.65, 1 if app.root.get_screen("transactions").filter_type == "income" else 0.8, 0.8, 0.8, 1
+                md_bg_color: 0.08, 0.72, 0.65, 1 if root.manager.get_screen("transactions").filter_type == "income" else 0.8, 0.8, 0.8, 1
                 on_release: 
-                    app.root.get_screen("transactions").set_filter("income")
+                    root.manager.get_screen("transactions").set_filter("income")
             
             MDFillRoundFlatButton:
                 text: "Expenses"
                 size_hint_x: None
                 width: dp(80)
-                md_bg_color: 0.08, 0.72, 0.65, 1 if app.root.get_screen("transactions").filter_type == "expense" else 0.8, 0.8, 0.8, 1
+                md_bg_color: 0.08, 0.72, 0.65, 1 if root.manager.get_screen("transactions").filter_type == "expense" else 0.8, 0.8, 0.8, 1
                 on_release: 
-                    app.root.get_screen("transactions").set_filter("expense")
+                    root.manager.get_screen("transactions").set_filter("expense")
         
         # Transactions List
         ScrollView:
@@ -80,7 +80,7 @@ MDScreen:
             pos_hint: {"right": 0.95, "bottom": 0.95}
             md_bg_color: 0.08, 0.72, 0.65, 1
             elevation: 4
-            on_release: app.root.current = "add_transaction"
+            on_release: root.manager.current = "add_transaction"
         
         # Bottom Navigation
         MDBottomNavigation:
@@ -91,29 +91,29 @@ MDScreen:
                 name: "nav_dashboard"
                 text: "Home"
                 icon: "home-outline"
-                on_tab_press: app.root.current = "dashboard"
+                on_tab_press: root.manager.current = "dashboard"
             
             MDBottomNavigationItem:
                 name: "nav_transactions"
                 text: "Transactions"
                 icon: "swap-horizontal"
                 active: True
-                on_tab_press: app.root.current = "transactions"
+                on_tab_press: root.manager.current = "transactions"
             
             MDBottomNavigationItem:
                 name: "nav_analytics"
                 text: "Analytics"
                 icon: "chart-pie"
-                on_tab_press: app.root.current = "analytics"
+                on_tab_press: root.manager.current = "analytics"
             
             MDBottomNavigationItem:
                 name: "nav_accounts"
                 text: "Accounts"
                 icon: "wallet"
-                on_tab_press: app.root.current = "accounts"
+                on_tab_press: root.manager.current = "accounts"
             
             MDBottomNavigationItem:
                 name: "nav_settings"
                 text: "Settings"
                 icon: "cog-outline"
-                on_tab_press: app.root.current = "settings"
+                on_tab_press: root.manager.current = "settings"

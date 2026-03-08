@@ -1,45 +1,52 @@
 ```
-# Database files
-*.db
+# Kivy compiled files
+*.pyc
+__pycache__/
 
 # Build artifacts
 build/
 dist/
-*.apk
-*.ipa
-*.aab
+*.egg-info/
 
-# Dependencies
-.buildozer/
-.eggs/
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
+# Virtual environments
 venv/
 .venv/
+env/
 
 # Logs
 *.log
 
-# Environment
+# Temporary files
+*.tmp
+*.swp
+
+# Environment files
 .env
 .env.local
-.env.*
+*.env.*
 
 # Editors
 .vscode/
 .idea/
-*.swp
-*.swo
 
-# OS
-.DS_Store
-Thumbs.db
+# Coverage reports
+.coverage
+coverage/
+htmlcov/
+
+# Python cache
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Distribution / packaging
+.Python
+*.so
+*.dylib
+*.dll
+
+# Testing
+.pytest_cache/
+.mypy_cache/
 ```

@@ -1,4 +1,4 @@
-#:import app kivy.app.App
+
 
 MDScreen:
     name: "add_transaction"
@@ -13,7 +13,7 @@ MDScreen:
             elevation: 0
             specific_text_color: 0.08, 0.72, 0.65, 1
             md_bg_color: 1, 1, 1, 1
-            left_action_items: [["arrow-left", lambda x: app.root.current = "dashboard"]]
+            left_action_items: [["arrow-left", lambda x: root.manager.current = "dashboard"]]
         
         ScrollView:
             do_scroll_x: False
@@ -41,14 +41,14 @@ MDScreen:
                     MDFillRoundFlatButton:
                         text: "Expense"
                         size_hint_x: 0.5
-                        md_bg_color: 0.94, 0.27, 0.27, 1 if app.root.get_screen("add_transaction").transaction_type == "expense" else 0.8, 0.8, 0.8, 1
-                        on_release: app.root.get_screen("add_transaction").set_transaction_type("expense")
+                        md_bg_color: 0.94, 0.27, 0.27, 1 if root.manager.get_screen("add_transaction").transaction_type == "expense" else 0.8, 0.8, 0.8, 1
+                        on_release: root.manager.get_screen("add_transaction").set_transaction_type("expense")
                     
                     MDFillRoundFlatButton:
                         text: "Income"
                         size_hint_x: 0.5
-                        md_bg_color: 0.08, 0.72, 0.65, 1 if app.root.get_screen("add_transaction").transaction_type == "income" else 0.8, 0.8, 0.8, 1
-                        on_release: app.root.get_screen("add_transaction").set_transaction_type("income")
+                        md_bg_color: 0.08, 0.72, 0.65, 1 if root.manager.get_screen("add_transaction").transaction_type == "income" else 0.8, 0.8, 0.8, 1
+                        on_release: root.manager.get_screen("add_transaction").set_transaction_type("income")
                 
                 # Amount Input
                 MDLabel:
@@ -78,7 +78,7 @@ MDScreen:
                     id: account_spinner
                     text: "Select Account"
                     size_hint_x: 1
-                    on_release: app.root.get_screen("add_transaction").on_account_spinner(*args)
+                    on_release: root.manager.get_screen("add_transaction").on_account_spinner(*args)
                     
                     MenuItem:
                         text: "Account 1"
@@ -141,7 +141,7 @@ MDScreen:
                     pos_hint: {"center_x": 0.5}
                     md_bg_color: 0.08, 0.72, 0.65, 1
                     font_size: dp(16)
-                    on_release: app.root.get_screen("add_transaction").save_transaction()
+                    on_release: root.manager.get_screen("add_transaction").save_transaction()
                 
                 # Clear Button
                 MDTextButton:
@@ -149,7 +149,7 @@ MDScreen:
                     size_hint_x: 1
                     pos_hint: {"center_x": 0.5}
                     theme_text_color: "Hint"
-                    on_release: app.root.get_screen("add_transaction").clear_form()
+                    on_release: root.manager.get_screen("add_transaction").clear_form()
                 
                 # Bottom padding for navigation
                 MDBoxLayout:

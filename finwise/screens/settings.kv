@@ -1,4 +1,4 @@
-#:import app kivy.app.App
+
 
 MDScreen:
     name: "settings"
@@ -13,7 +13,7 @@ MDScreen:
             elevation: 0
             specific_text_color: 0.08, 0.72, 0.65, 1
             md_bg_color: 1, 1, 1, 1
-            left_action_items: [["arrow-left", lambda x: app.root.current = "dashboard"]]
+            left_action_items: [["arrow-left", lambda x: root.manager.current = "dashboard"]]
         
         ScrollView:
             do_scroll_x: False
@@ -48,7 +48,7 @@ MDScreen:
                         text: "$"
                         size_hint_x: 1
                         on_release: 
-                            app.root.get_screen("settings").set_currency(self.text)
+                            root.manager.get_screen("settings").set_currency(self.text)
                         
                         MenuItem:
                             text: "$"
@@ -88,7 +88,7 @@ MDScreen:
                         text: "Light"
                         size_hint_x: 1
                         on_release: 
-                            app.root.get_screen("settings").set_theme(self.text)
+                            root.manager.get_screen("settings").set_theme(self.text)
                         
                         MenuItem:
                             text: "Light"
@@ -121,7 +121,7 @@ MDScreen:
                         line_color: 0.08, 0.72, 0.65, 1
                         text_color: 0.08, 0.72, 0.65, 1
                         radius: [dp(12)]
-                        on_release: app.root.get_screen("settings").go_to_categories()
+                        on_release: root.manager.get_screen("settings").go_to_categories()
                     
                     MDRectangleFlatButton:
                         text: "Accounts"
@@ -130,7 +130,7 @@ MDScreen:
                         line_color: 0.08, 0.72, 0.65, 1
                         text_color: 0.08, 0.72, 0.65, 1
                         radius: [dp(12)]
-                        on_release: app.root.get_screen("settings").go_to_accounts()
+                        on_release: root.manager.get_screen("settings").go_to_accounts()
                 
                 # Data Management
                 MDCard:
@@ -155,14 +155,14 @@ MDScreen:
                         size_hint_x: 1
                         pos_hint: {"center_x": 0.5}
                         md_bg_color: 0.08, 0.72, 0.65, 1
-                        on_release: app.root.get_screen("settings").backup_database()
+                        on_release: root.manager.get_screen("settings").backup_database()
                     
                     MDFillRoundFlatButton:
                         text: "Reset Demo Data"
                         size_hint_x: 1
                         pos_hint: {"center_x": 0.5}
                         md_bg_color: 0.94, 0.27, 0.27, 1
-                        on_release: app.root.get_screen("settings").reset_demo_data()
+                        on_release: root.manager.get_screen("settings").reset_demo_data()
                 
                 # App Info
                 MDCard:
@@ -210,29 +210,29 @@ MDScreen:
                 name: "nav_dashboard"
                 text: "Home"
                 icon: "home-outline"
-                on_tab_press: app.root.current = "dashboard"
+                on_tab_press: root.manager.current = "dashboard"
             
             MDBottomNavigationItem:
                 name: "nav_transactions"
                 text: "Transactions"
                 icon: "swap-horizontal"
-                on_tab_press: app.root.current = "transactions"
+                on_tab_press: root.manager.current = "transactions"
             
             MDBottomNavigationItem:
                 name: "nav_analytics"
                 text: "Analytics"
                 icon: "chart-pie"
-                on_tab_press: app.root.current = "analytics"
+                on_tab_press: root.manager.current = "analytics"
             
             MDBottomNavigationItem:
                 name: "nav_accounts"
                 text: "Accounts"
                 icon: "wallet"
-                on_tab_press: app.root.current = "accounts"
+                on_tab_press: root.manager.current = "accounts"
             
             MDBottomNavigationItem:
                 name: "nav_settings"
                 text: "Settings"
                 icon: "cog-outline"
                 active: True
-                on_tab_press: app.root.current = "settings"
+                on_tab_press: root.manager.current = "settings"

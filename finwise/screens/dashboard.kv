@@ -1,5 +1,3 @@
-#:import app kivy.app.App
-
 MDScreen:
     name: "dashboard"
     md_bg_color: 0.94, 0.99, 0.98, 1  # Very light mint background
@@ -214,28 +212,28 @@ MDScreen:
                 text: "Home"
                 icon: "home-outline"
                 active: True
-                on_tab_press: app.root.current = "dashboard"
+                on_tab_press: root.manager.current = "dashboard"
             
             MDBottomNavigationItem:
                 name: "nav_transactions"
                 text: "Transactions"
                 icon: "swap-horizontal"
-                on_tab_press: app.root.current = "transactions"
+                on_tab_press: root.manager.current = "transactions"
             
             MDBottomNavigationItem:
                 name: "nav_analytics"
                 text: "Analytics"
                 icon: "chart-pie"
-                on_tab_press: app.root.current = "analytics"
+                on_tab_press: root.manager.current = "analytics"
             
             MDBottomNavigationItem:
                 name: "nav_accounts"
                 text: "Accounts"
                 icon: "wallet"
-                on_tab_press: app.root.current = "accounts"
+                on_tab_press: root.manager.current = "accounts"
             
             MDBottomNavigationItem:
                 name: "nav_settings"
                 text: "Settings"
                 icon: "cog-outline"
-                on_tab_press: app.root.current = "settings"
+                on_tab_press: root.manager.current = "settings"
