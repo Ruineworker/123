@@ -10,7 +10,7 @@ from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.list import OneLineAvatarIconListItem, IconLeftWidget
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
-from kivymd.uix.snackbar import Snackbar
+from kivymd.toast import toast
 from datetime import datetime
 import sqlite3
 import os
@@ -508,7 +508,7 @@ class ExpenseTrackerApp(MDApp):
         self.root.current = "settings"
     
     def show_menu(self):
-        Snackbar(text="Use bottom navigation to switch screens").open()
+        toast("Use bottom navigation to switch screens")
     
     def load_accounts(self):
         """Load accounts into the accounts list"""
@@ -566,9 +566,9 @@ class ExpenseTrackerApp(MDApp):
             
             self.close_dialog(obj)
             self.load_accounts()
-            Snackbar(text="Account added successfully").open()
+            toast("Account added successfully")
         else:
-            Snackbar(text="Please enter account name").open()
+            toast("Please enter account name")
     
     def show_account_options(self, account_id, account_name):
         if not self.dialog:
@@ -623,9 +623,9 @@ class ExpenseTrackerApp(MDApp):
             
             self.close_dialog(None)
             self.load_accounts()
-            Snackbar(text="Account renamed successfully").open()
+            toast("Account renamed successfully")
         else:
-            Snackbar(text="Please enter new name").open()
+            toast("Please enter new name")
     
     def delete_account(self, account_id):
         conn = self.get_db_connection()
@@ -637,7 +637,7 @@ class ExpenseTrackerApp(MDApp):
         
         self.close_dialog(None)
         self.load_accounts()
-        Snackbar(text="Account deleted successfully").open()
+        toast("Account deleted successfully")
     
     def setup_add_transaction_screen(self):
         """Setup the add transaction screen"""
@@ -684,17 +684,17 @@ class ExpenseTrackerApp(MDApp):
         description = trans_screen.ids.description_field.text
         
         if not account_name or account_name == "Select Account":
-            Snackbar(text="Please select an account").open()
+            toast("Please select an account")
             return
         
         if not category or category == "Select Category":
-            Snackbar(text="Please select a category").open()
+            toast("Please select a category")
             return
         
         try:
             amount = float(amount_text)
         except ValueError:
-            Snackbar(text="Please enter valid amount").open()
+            toast("Please enter valid amount")
             return
         
         account_id = self.account_ids.get(account_name)
@@ -723,7 +723,7 @@ class ExpenseTrackerApp(MDApp):
         trans_screen.ids.amount_field.text = ""
         trans_screen.ids.description_field.text = ""
         
-        Snackbar(text="Transaction saved successfully").open()
+        toast("Transaction saved successfully")
         self.go_to_main()
     
     def load_history(self):
@@ -786,7 +786,7 @@ class ExpenseTrackerApp(MDApp):
                 history_screen.ids.history_list.add_widget(item)
     
     def manage_categories(self, category_type):
-        Snackbar(text=f"Manage {category_type} categories - Feature coming soon").open()
+        toast(f"Manage {category_type} categories - Feature coming soon")
     
     def toggle_theme(self, instance, value):
         if value:
@@ -795,7 +795,7 @@ class ExpenseTrackerApp(MDApp):
             self.theme_cls.theme_style = "Light"
     
     def export_data(self):
-        Snackbar(text="Data exported to CSV").open()
+        toast("Data exported to CSV")
     
     def clear_all_data(self):
         if not self.dialog:
@@ -818,7 +818,7 @@ class ExpenseTrackerApp(MDApp):
         conn.close()
         
         self.close_dialog(obj)
-        Snackbar(text="All data cleared").open()
+        toast("All data cleared")
         self.go_to_main()
 
 
