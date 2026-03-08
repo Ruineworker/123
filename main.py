@@ -687,7 +687,7 @@ class ExpenseTrackerApp(MDApp):
             toast("No accounts available. Create one first!")
             return
         
-        buttons = [MDFlatButton(text=acc, on_release=lambda x, a=acc: self.select_account(a))]
+        buttons = [MDFlatButton(text=acc, on_release=lambda x, a=acc: self.select_account(a)) for acc in accounts]
         self.account_dialog = MDDialog(
             title="Select Account",
             type="simple",
