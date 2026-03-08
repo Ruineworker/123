@@ -94,7 +94,6 @@ MDScreenManager:
                     
                     MDIconButton:
                         icon: "plus-circle-outline"
-                        user_data: "income"
                         on_release: app.go_to_add_transaction("income")
                         pos_hint: {"center_x": 0.5, "center_y": 0.5}
                         theme_icon_color: "Custom"
@@ -120,7 +119,6 @@ MDScreenManager:
                     
                     MDIconButton:
                         icon: "minus-circle-outline"
-                        user_data: "expense"
                         on_release: app.go_to_add_transaction("expense")
                         pos_hint: {"center_x": 0.5, "center_y": 0.5}
                         theme_icon_color: "Custom"
