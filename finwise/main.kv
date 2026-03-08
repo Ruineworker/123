@@ -1,0 +1,79 @@
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+# Main KV file - Screen Manager configuration
+ScreenManager:
+    transition: FadeTransition()
+    duration: 0.3
+    
+    SplashScreen:
+    DashboardScreen:
+    TransactionsScreen:
+    AddTransactionScreen:
+    CategoriesScreen:
+    AccountsScreen:
+    AnalyticsScreen:
+    SettingsScreen:
+
+# Bottom Navigation Bar (shared component)
+<MDBottomNavigationBar@MDBoxLayout>:
+    orientation: "horizontal"
+    size_hint_y: None
+    height: dp(80)
+    padding: dp(0), dp(8), dp(0), dp(16)
+    spacing: dp(4)
+    md_bg_color: 1, 1, 1, 1
+    
+    MDButton:
+        style: "text"
+        size_hint_x: 1
+        on_release: root.manager.current = "dashboard" if root.manager else None
+        
+        MDButtonIcon:
+            icon: "home-outline"
+        
+        MDButtonText:
+            text: "Home"
+    
+    MDButton:
+        style: "text"
+        size_hint_x: 1
+        on_release: root.manager.current = "transactions" if root.manager else None
+        
+        MDButtonIcon:
+            icon: "swap-horizontal"
+        
+        MDButtonText:
+            text: "Transactions"
+    
+    MDButton:
+        style: "text"
+        size_hint_x: 1
+        on_release: root.manager.current = "analytics" if root.manager else None
+        
+        MDButtonIcon:
+            icon: "chart-pie"
+        
+        MDButtonText:
+            text: "Analytics"
+    
+    MDButton:
+        style: "text"
+        size_hint_x: 1
+        on_release: root.manager.current = "accounts" if root.manager else None
+        
+        MDButtonIcon:
+            icon: "wallet"
+        
+        MDButtonText:
+            text: "Accounts"
+    
+    MDButton:
+        style: "text"
+        size_hint_x: 1
+        on_release: root.manager.current = "settings" if root.manager else None
+        
+        MDButtonIcon:
+            icon: "cog-outline"
+        
+        MDButtonText:
+            text: "Settings"

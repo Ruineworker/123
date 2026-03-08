@@ -1,0 +1,57 @@
+MDScreen:
+    name: "splash"
+    md_bg_color: 1, 1, 1, 1
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint: 1, 1
+        padding: dp(40)
+        spacing: dp(20)
+        
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+            
+            # Logo Icon
+            MDIcon:
+                icon: "wallet-giftcard"
+                font_size: dp(80)
+                theme_text_color: "Custom"
+                text_color: 0.08, 0.72, 0.65, 1  # #14B8A6
+                size_hint: None, None
+                size: dp(100), dp(100)
+                pos_hint: {"center_x": 0.5}
+            
+            MDLabel:
+                text: "FinWise"
+                font_size: "24sp"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.08, 0.72, 0.65, 1
+                size_hint_y: None
+                height: self.texture_size[1] + dp(20)
+                bold: True
+            
+            MDLabel:
+                text: "Smart Finance Tracker"
+                font_size: "16sp"
+                halign: "center"
+                theme_text_color: "Secondary"
+                size_hint_y: None
+                height: self.texture_size[1] + dp(10)
+        
+        # Loading indicator
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            pos_hint: {"center_x": 0.5}
+            
+            MDCircularProgressIndicator:
+                size_hint: None, None
+                size: dp(48), dp(48)
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                theme_color: "Custom"
+                color: 0.08, 0.72, 0.65, 1

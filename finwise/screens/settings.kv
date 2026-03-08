@@ -1,0 +1,210 @@
+
+
+MDScreen:
+    name: "settings"
+    md_bg_color: 0.94, 0.99, 0.98, 1
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        
+        # App Bar
+        MDTopAppBar:
+            title: "Settings"
+            type: "top"
+            specific_text_color: 0.08, 0.72, 0.65, 1
+            md_bg_color: 1, 1, 1, 1
+            left_action_items: [["arrow-left", lambda x: None]]
+        
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(16)
+                spacing: dp(16)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                # Currency Setting
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDLabel:
+                        text: "Currency"
+                        font_size: "16sp"
+                        theme_text_color: "Primary"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    MDDropDownItem:
+                        id: currency_spinner
+                        text: "$"
+                        size_hint_x: 1
+                        on_release: 
+                            root.manager.get_screen("settings").set_currency(self.text)
+                        
+                        MenuItem:
+                            text: "$"
+                        
+                        MenuItem:
+                            text: "€"
+                        
+                        MenuItem:
+                            text: "£"
+                        
+                        MenuItem:
+                            text: "¥"
+                        
+                        MenuItem:
+                            text: "₽"
+                
+                # Theme Setting
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDLabel:
+                        text: "Theme"
+                        font_size: "16sp"
+                        theme_text_color: "Primary"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    MDDropDownItem:
+                        id: theme_spinner
+                        text: "Light"
+                        size_hint_x: 1
+                        on_release: 
+                            root.manager.get_screen("settings").set_theme(self.text)
+                        
+                        MenuItem:
+                            text: "Light"
+                        
+                        MenuItem:
+                            text: "Dark"
+                
+                # Manage Categories
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDLabel:
+                        text: "Manage"
+                        font_size: "16sp"
+                        theme_text_color: "Primary"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    MDButton:
+                        style: "outlined"
+                        size_hint_x: 1
+                        pos_hint: {"center_x": 0.5}
+                        line_color: 0.08, 0.72, 0.65, 1
+                        radius: [dp(12)]
+                        on_release: root.manager.get_screen("settings").go_to_categories()
+
+                        MDButtonText:
+                            text: "Categories"
+                    
+                    MDButton:
+                        style: "outlined"
+                        size_hint_x: 1
+                        pos_hint: {"center_x": 0.5}
+                        line_color: 0.08, 0.72, 0.65, 1
+                        radius: [dp(12)]
+                        on_release: root.manager.get_screen("settings").go_to_accounts()
+
+                        MDButtonText:
+                            text: "Accounts"
+                
+                # Data Management
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDLabel:
+                        text: "Data Management"
+                        font_size: "16sp"
+                        theme_text_color: "Primary"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    MDButton:
+                        style: "filled"
+                        size_hint_x: 1
+                        pos_hint: {"center_x": 0.5}
+                        md_bg_color: 0.08, 0.72, 0.65, 1
+                        on_release: root.manager.get_screen("settings").backup_database()
+
+                        MDButtonText:
+                            text: "Backup Database"
+                    
+                    MDButton:
+                        style: "filled"
+                        size_hint_x: 1
+                        pos_hint: {"center_x": 0.5}
+                        md_bg_color: 0.94, 0.27, 0.27, 1
+                        on_release: root.manager.get_screen("settings").reset_demo_data()
+
+                        MDButtonText:
+                            text: "Reset Demo Data"
+                
+                # App Info
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDLabel:
+                        text: "About"
+                        font_size: "16sp"
+                        theme_text_color: "Primary"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                    
+                    MDLabel:
+                        text: "FinWise v1.0.0"
+                        font_size: "14sp"
+                        theme_text_color: "Secondary"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    
+                    MDLabel:
+                        text: "Personal Finance Tracker"
+                        font_size: "12sp"
+                        theme_text_color: "Hint"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+        # Bottom Navigation
+        MDBottomNavigationBar:

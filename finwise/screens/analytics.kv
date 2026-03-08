@@ -1,0 +1,203 @@
+
+
+MDScreen:
+    name: "analytics"
+    md_bg_color: 0.94, 0.99, 0.98, 1
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        
+        # App Bar
+        MDTopAppBar:
+            title: "Analytics"
+            type: "top"
+            specific_text_color: 0.08, 0.72, 0.65, 1
+            md_bg_color: 1, 1, 1, 1
+            left_action_items: [["arrow-left", lambda x: None]]
+        
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(16)
+                spacing: dp(16)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                # Monthly Summary Cards
+                MDLabel:
+                    text: "This Month"
+                    font_size: "20sp"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDBoxLayout:
+                    size_hint_y: None
+                    height: dp(90)
+                    spacing: dp(12)
+                    
+                    # Income
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint_x: 0.33
+                        padding: dp(12)
+                        radius: [dp(16), dp(16), dp(16), dp(16)]
+                        elevation: 1
+                        style: "filled"
+                        md_bg_color: 1, 1, 1, 1
+                        
+                        MDLabel:
+                            text: "Income"
+                            font_size: "12sp"
+                            theme_text_color: "Secondary"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        
+                        MDLabel:
+                            id: analytics_income
+                            text: "$0.00"
+                            font_size: "16sp"
+                            theme_text_color: "Custom"
+                            text_color: 0.08, 0.72, 0.65, 1
+                            bold: True
+                            halign: "center"
+                            shorten: True
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                    
+                    # Expenses
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint_x: 0.33
+                        padding: dp(12)
+                        radius: [dp(16), dp(16), dp(16), dp(16)]
+                        elevation: 1
+                        style: "filled"
+                        md_bg_color: 1, 1, 1, 1
+                        
+                        MDLabel:
+                            text: "Expenses"
+                            font_size: "12sp"
+                            theme_text_color: "Secondary"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        
+                        MDLabel:
+                            id: analytics_expenses
+                            text: "$0.00"
+                            font_size: "16sp"
+                            theme_text_color: "Custom"
+                            text_color: 0.94, 0.27, 0.27, 1
+                            bold: True
+                            halign: "center"
+                            shorten: True
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                    
+                    # Balance
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint_x: 0.33
+                        padding: dp(12)
+                        radius: [dp(16), dp(16), dp(16), dp(16)]
+                        elevation: 1
+                        style: "filled"
+                        md_bg_color: 1, 1, 1, 1
+                        
+                        MDLabel:
+                            text: "Balance"
+                            font_size: "12sp"
+                            theme_text_color: "Secondary"
+                            halign: "center"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                        
+                        MDLabel:
+                            id: analytics_balance
+                            text: "$0.00"
+                            font_size: "16sp"
+                            theme_text_color: "Primary"
+                            bold: True
+                            halign: "center"
+                            shorten: True
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                
+                # Expenses by Category
+                MDLabel:
+                    text: "Expenses by Category"
+                    font_size: "20sp"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDCard:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDBoxLayout:
+                        id: categories_expense
+                        orientation: "vertical"
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing: dp(12)
+                
+                # Income by Category
+                MDLabel:
+                    text: "Income by Category"
+                    font_size: "20sp"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDCard:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDBoxLayout:
+                        id: categories_income
+                        orientation: "vertical"
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing: dp(12)
+                
+                # Monthly Trend
+                MDLabel:
+                    text: "Monthly Trend"
+                    font_size: "20sp"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDCard:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(16)
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+                    elevation: 1
+                    style: "filled"
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDBoxLayout:
+                        id: monthly_trend_container
+                        orientation: "vertical"
+                        size_hint_y: None
+                        height: self.minimum_height
+                        spacing: dp(12)
+
+        # Bottom Navigation
+        MDBottomNavigationBar:

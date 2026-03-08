@@ -1,0 +1,214 @@
+MDScreen:
+    name: "dashboard"
+    md_bg_color: 0.94, 0.99, 0.98, 1  # Very light mint background
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        
+        # App Bar - Updated for KivyMD 2.0
+        MDTopAppBar:
+            title: "FinWise"
+            type: "top"
+            specific_text_color: 0.08, 0.72, 0.65, 1
+            md_bg_color: 1, 1, 1, 1
+            left_action_items: [["account-circle-outline", lambda x: None, "Profile"]]
+            right_action_items: [["bell-outline", lambda x: None, "Notifications"]]
+        
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(16)
+                spacing: dp(16)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                # Hero Card - Total Balance
+                MDCard:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: dp(200)
+                    padding: dp(24)
+                    spacing: dp(12)
+                    radius: [dp(24), dp(24), dp(24), dp(24)]
+                    style: "filled"
+                    md_bg_color: 0.08, 0.72, 0.65, 1  # Primary teal
+                    
+                    MDLabel:
+                        text: "Total Balance"
+                        font_size: "16sp"
+                        theme_text_color: "Custom"
+                        text_color: 1, 1, 1, 0.9
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    
+                    MDLabel:
+                        text: root.total_balance
+                        font_size: "24sp"
+                        theme_text_color: "Custom"
+                        text_color: 1, 1, 1, 1
+                        bold: True
+                        shorten: True
+                        shorten_from: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                    
+                    MDBoxLayout:
+                        size_hint_y: None
+                        height: dp(40)
+                        padding: dp(0, dp(10))
+                        
+                        MDLabel:
+                            text: "Updated today"
+                            font_size: "12sp"
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 0.7
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                
+                # Monthly Summary Cards
+                MDBoxLayout:
+                    size_hint_y: None
+                    height: dp(100)
+                    spacing: dp(12)
+                    
+                    # Income Card
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint_x: 0.5
+                        padding: dp(16)
+                        spacing: dp(8)
+                        radius: [dp(20), dp(20), dp(20), dp(20)]
+                        style: "filled"
+                        md_bg_color: 1, 1, 1, 1
+                        
+                        MDBoxLayout:
+                            size_hint_y: None
+                            height: dp(30)
+                            
+                            MDIcon:
+                                icon: "arrow-down-circle"
+                                theme_text_color: "Custom"
+                                text_color: 0.06, 0.63, 0.57, 1
+                                font_size: dp(24)
+                                size_hint: None, None
+                                size: dp(30), dp(30)
+                            
+                            MDLabel:
+                                text: "Income"
+                                font_size: "16sp"
+                                theme_text_color: "Secondary"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                        
+                        MDLabel:
+                            text: root.monthly_income
+                            font_size: "20sp"
+                            theme_text_color: "Primary"
+                            bold: True
+                            shorten: True
+                            shorten_from: "left"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                    
+                    # Expense Card
+                    MDCard:
+                        orientation: "vertical"
+                        size_hint_x: 0.5
+                        padding: dp(16)
+                        spacing: dp(8)
+                        radius: [dp(20), dp(20), dp(20), dp(20)]
+                        style: "filled"
+                        md_bg_color: 1, 1, 1, 1
+                        
+                        MDBoxLayout:
+                            size_hint_y: None
+                            height: dp(30)
+                            
+                            MDIcon:
+                                icon: "arrow-up-circle"
+                                theme_text_color: "Custom"
+                                text_color: 0.94, 0.27, 0.27, 1
+                                font_size: dp(24)
+                                size_hint: None, None
+                                size: dp(30), dp(30)
+                            
+                            MDLabel:
+                                text: "Expenses"
+                                font_size: "16sp"
+                                theme_text_color: "Secondary"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                        
+                        MDLabel:
+                            text: root.monthly_expenses
+                            font_size: "20sp"
+                            theme_text_color: "Custom"
+                            text_color: 0.94, 0.27, 0.27, 1
+                            bold: True
+                            shorten: True
+                            shorten_from: "left"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                
+                # Quick Actions
+                MDLabel:
+                    text: "Quick Actions"
+                    font_size: "20sp"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDBoxLayout:
+                    size_hint_y: None
+                    height: dp(80)
+                    spacing: dp(12)
+                    
+                    MDButton:
+                        style: "filled"
+                        size_hint_x: 0.5
+                        md_bg_color: 0.08, 0.72, 0.65, 1
+                        on_release: root.add_income()
+
+                        MDButtonText:
+                            text: "+ Income"
+                    
+                    MDButton:
+                        style: "filled"
+                        size_hint_x: 0.5
+                        md_bg_color: 0.94, 0.27, 0.27, 1
+                        on_release: root.add_expense()
+
+                        MDButtonText:
+                            text: "+ Expense"
+                
+                # Recent Transactions
+                MDLabel:
+                    text: "Recent Transactions"
+                    font_size: "20sp"
+                    theme_text_color: "Primary"
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                
+                MDButton:
+                    style: "outlined"
+                    size_hint_x: 1
+                    pos_hint: {"center_x": 0.5}
+                    line_color: 0.08, 0.72, 0.65, 1
+                    radius: [dp(12)]
+                    on_release: root.go_to_transactions()
+
+                    MDButtonText:
+                        text: "View All"
+                
+                # Recent Transactions List
+                MDBoxLayout:
+                    id: recent_transactions_container
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: dp(8)
+                
+                # Bottom Navigation
+                MDBottomNavigationBar:
