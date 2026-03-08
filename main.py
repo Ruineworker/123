@@ -217,19 +217,21 @@ MDScreenManager:
                     text: "Select Account"
                     font_style: "Subtitle1"
                     
-                MDDropDownItem:
-                    id: account_dropdown
+                MDRaisedButton:
+                    id: account_btn
                     text: "Select Account"
                     size_hint_x: 1
+                    on_release: app.show_account_selector()
                     
                 MDLabel:
                     text: "Category"
                     font_style: "Subtitle1"
                     
-                MDDropDownItem:
-                    id: category_dropdown
+                MDRaisedButton:
+                    id: category_btn
                     text: "Select Category"
                     size_hint_x: 1
+                    on_release: app.show_category_selector()
                     
                 MDTextField:
                     id: amount_field
@@ -673,13 +675,83 @@ class ExpenseTrackerApp(MDApp):
         self.current_transaction_type = transaction_type
         self.setup_add_transaction_screen()
     
+    def show_account_selector(self):
+        """Show dialog to select account"""
+        conn = self.get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM accounts")
+        accounts = [row[0] for row in cursor.fetchall()]
+        conn.close()
+        
+        if not accounts:
+            toast("No accounts available. Create one first!")
+            return
+        
+        buttons = [MDFlatButton(text=acc, on_release=lambda x, a=acc: self.select_account(a))]
+        self.account_dialog = MDDialog(
+            title="Select Account",
+            type="simple",
+            items=[],
+            buttons=buttons
+        )
+        self.account_dialog.open()
+    
+    def select_account(self, account_name):
+        """Set selected account"""
+        trans_screen = self.root.get_screen("add_transaction")
+        if trans_screen:
+            trans_screen.ids.account_btn.text = account_name
+        if hasattr(self, 'account_dialog'):
+            self.account_dialog.dismiss()
+    
+    def show_category_selector(self):
+        """Show dialog to select category"""
+        conn = self.get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT name, emoji FROM categories WHERE type = ?", (self.current_transaction_type,))
+        categories = cursor.fetchall()
+        conn.close()
+        
+        if not categories:
+            toast("No categories available!")
+            return
+        
+        buttons = [MDFlatButton(text=f"{emoji} {name}", on_release=lambda x, n=name: self.select_category(n)) 
+                   for name, emoji in categories]
+        self.category_dialog = MDDialog(
+            title="Select Category",
+            type="simple",
+            items=[],
+            buttons=buttons
+        )
+        self.category_dialog.open()
+    
+    def select_category(self, category_name):
+        """Set selected category"""
+        trans_screen = self.root.get_screen("add_transaction")
+        if trans_screen:
+            # Find emoji for this category
+            conn = self.get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT emoji FROM categories WHERE name = ? AND type = ?", 
+                          (category_name, self.current_transaction_type))
+            result = cursor.fetchone()
+            emoji = result[0] if result else "💰"
+            conn.close()
+            
+            trans_screen.ids.category_btn.text = f"{emoji} {category_name}"
+        if hasattr(self, 'category_dialog'):
+            self.category_dialog.dismiss()
+    
     def save_transaction(self):
         trans_screen = self.root.get_screen("add_transaction")
         if not trans_screen:
             return
             
-        account_name = trans_screen.ids.account_dropdown.text
-        category = trans_screen.ids.category_dropdown.text
+        account_name = trans_screen.ids.account_btn.text
+        category_text = trans_screen.ids.category_btn.text
+        # Extract category name without emoji
+        category = category_text.split(" ", 1)[1] if " " in category_text else category_text
         amount_text = trans_screen.ids.amount_field.text
         description = trans_screen.ids.description_field.text
         
@@ -722,6 +794,8 @@ class ExpenseTrackerApp(MDApp):
         # Clear fields
         trans_screen.ids.amount_field.text = ""
         trans_screen.ids.description_field.text = ""
+        trans_screen.ids.account_btn.text = "Select Account"
+        trans_screen.ids.category_btn.text = "Select Category"
         
         toast("Transaction saved successfully")
         self.go_to_main()
