@@ -205,44 +205,6 @@ MDScreen:
                         theme_text_color: "Hint"
                         size_hint_y: None
                         height: self.texture_size[1]
-                
-                # Bottom padding for navigation
-                MDBoxLayout:
-                    size_hint_y: None
-                    height: dp(80)
-        
+
         # Bottom Navigation
-        MDBottomNavigation:
-            panel_color: 1, 1, 1, 1
-            elevation: 8
-            
-            MDBottomNavigationItem:
-                name: "nav_dashboard"
-                text: "Home"
-                icon: "home-outline"
-                on_tab_press: root.manager.current = "dashboard"
-            
-            MDBottomNavigationItem:
-                name: "nav_transactions"
-                text: "Transactions"
-                icon: "swap-horizontal"
-                on_tab_press: root.manager.current = "transactions"
-            
-            MDBottomNavigationItem:
-                name: "nav_analytics"
-                text: "Analytics"
-                icon: "chart-pie"
-                on_tab_press: root.manager.current = "analytics"
-            
-            MDBottomNavigationItem:
-                name: "nav_accounts"
-                text: "Accounts"
-                icon: "wallet"
-                on_tab_press: root.manager.current = "accounts"
-            
-            MDBottomNavigationItem:
-                name: "nav_settings"
-                text: "Settings"
-                icon: "cog-outline"
-                active: True
-                on_tab_press: root.manager.current = "settings"
+        MDBottomNavigationBar:

@@ -6,29 +6,32 @@ __pycache__/
 # Build artifacts
 build/
 dist/
-*.egg-info/
+*.so
+*.dylib
+*.dll
 
-# Virtual environments
+# Dependencies
 venv/
 .venv/
 .env
 .env.local
 
-# IDE specific
+# Editor/IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
+*.tmp
 
 # Logs
 *.log
 
 # Coverage reports
 .coverage
-htmlcov/
 coverage/
+htmlcov/
 
-# OS specific
+# OS files
 .DS_Store
 Thumbs.db
 ```
