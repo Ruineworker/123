@@ -31,7 +31,7 @@ MDScreen:
             padding: dp(16, 8)
             spacing: dp(8)
             
-            MDFillRoundFlatButton:
+            MDRaisedButton:
                 text: "All"
                 size_hint_x: None
                 width: dp(70)
@@ -39,7 +39,7 @@ MDScreen:
                 on_release: 
                     root.manager.get_screen("transactions").set_filter("all")
             
-            MDFillRoundFlatButton:
+            MDRaisedButton:
                 text: "Income"
                 size_hint_x: None
                 width: dp(80)
@@ -47,7 +47,7 @@ MDScreen:
                 on_release: 
                     root.manager.get_screen("transactions").set_filter("income")
             
-            MDFillRoundFlatButton:
+            MDRaisedButton:
                 text: "Expenses"
                 size_hint_x: None
                 width: dp(80)
